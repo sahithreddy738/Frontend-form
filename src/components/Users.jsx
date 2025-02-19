@@ -8,7 +8,7 @@ const Users = () => {
   const fetchUsers = async () => {
     const data = await fetch(BASE_URL + "/users");
     const userData = await data.json();
-    setUsers(userData?.users?.Items);
+    setUsers(userData?.users);
   };
   useEffect(() => {
     fetchUsers();
