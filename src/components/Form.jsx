@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Input from "./Input";
 import React from 'react';
+import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../utils";
 
 const Form = () => {
   const [newUser, setNewUser] = useState({
@@ -9,6 +11,7 @@ const Form = () => {
     email: "",
     password: "",
   });
+  const navigate=useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const hanldeUser = (value, field) => {
     setNewUser((prevUser) => ({
@@ -18,7 +21,7 @@ const Form = () => {
   };
   const handleSubmit=async()=>{
     console.log(newUser);
-    const response = await fetch("http://localhost:5000/submit", {
+    const response = await fetch(BASE_URL+"/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({newUser}),
@@ -32,6 +35,7 @@ const Form = () => {
       email: "",
       password: "",
     })
+    navigate("/users");
   }
   return (
     <div className="w-full h-[80%]">
